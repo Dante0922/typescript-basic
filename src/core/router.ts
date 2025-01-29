@@ -21,14 +21,15 @@ export default class Router {
 
     route() {
         const routePath = location.hash;
+        const id = location.hash.substring(7);
 
         if (routePath === '' && this.defaultRoute) {
-            this.defaultRoute.page.render();
+            this.defaultRoute.page.render(id);
         }
 
         for (const routeInfo of this.routeTable) {
             if (routePath.indexOf(routeInfo.path) >= 0) {
-                routeInfo.page.render();
+                routeInfo.page.render(id);
                 break;
             }
         }
